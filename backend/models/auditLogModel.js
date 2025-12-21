@@ -48,6 +48,6 @@ auditLogSchema.index({ createdAt: -1 }); // For sorting by newest
 // 90 days * 24 hours * 60 minutes * 60 seconds = 7776000 seconds
 auditLogSchema.index({ createdAt: 1 }, { expireAfterSeconds: 7776000 });
 
-const AuditLog = mongoose.model('AuditLog', auditLogSchema);
+const AuditLog = mongoose.models.AuditLog || mongoose.model('AuditLog', auditLogSchema);
 
 export default AuditLog;

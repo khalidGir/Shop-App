@@ -164,10 +164,12 @@ const SalesScreen = () => {
     try {
       await updateOrderToPaid({
         id: orderId,
-        id: 'manual-payment',
-        status: 'COMPLETED',
-        update_time: new Date().toISOString(),
-        email_address: userInfo?.email || '',
+        paymentResult: {
+          id: 'manual-payment',
+          status: 'COMPLETED',
+          update_time: new Date().toISOString(),
+          email_address: userInfo?.email || '',
+        },
       }).unwrap();
       toast.success('Order marked as paid');
       refetch();

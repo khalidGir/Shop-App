@@ -19,11 +19,13 @@ import InvoiceEditScreen from './screens/InvoiceEditScreen';
 import InvoiceDetailsScreen from './screens/InvoiceDetailsScreen';
 import BottomNavBar from './components/BottomNavBar';
 import ProfileScreen from './screens/ProfileScreen'; // Import ProfileScreen
+import InstallButton from './components/InstallButton';
 
 const App = () => {
   return (
     <Router>
       <Header />
+      <InstallButton />
       <main className='py-3 pb-5'>
         <Container>
           <Routes>

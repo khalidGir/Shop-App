@@ -34,7 +34,9 @@ import { performanceMonitor, requestIdMiddleware } from './middleware/performanc
 import { specs, swaggerUi } from './swagger.js';
 
 dotenv.config();
-connectDB();
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 // Create winston logger
 const logger = winston.createLogger({

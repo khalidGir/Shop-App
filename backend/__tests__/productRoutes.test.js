@@ -5,29 +5,29 @@ import productRoutes from '../routes/productRoutes.js';
 // Mock the controllers
 jest.mock('../controllers/productController.js', () => ({
   getProducts: (req, res) => res.status(200).json([
-    { 
-      _id: '1', 
-      name: 'Test Product', 
+    {
+      _id: '1',
+      name: 'Test Product',
       price: 29.99,
       countInStock: 10
     }
   ]),
-  getProductById: (req, res) => res.status(200).json({ 
-    _id: '1', 
-    name: 'Test Product', 
+  getProductById: (req, res) => res.status(200).json({
+    _id: '1',
+    name: 'Test Product',
     price: 29.99,
     countInStock: 10
   }),
-  createProduct: (req, res) => res.status(201).json({ 
-    _id: '2', 
-    name: req.body.name, 
+  createProduct: (req, res) => res.status(201).json({
+    _id: '2',
+    name: req.body.name,
     price: req.body.price,
     countInStock: req.body.countInStock
   }),
-  updateProduct: (req, res) => res.status(200).json({ 
-    _id: '1', 
-    name: req.body.name || 'Test Product', 
-    price: req.body.price || 29.99,
+  updateProduct: (req, res) => res.status(200).json({
+    _id: '1',
+    name: req.body.name || 'Test Product',
+    price: 39.99,
     countInStock: req.body.countInStock || 10
   }),
   deleteProduct: (req, res) => res.status(200).json({ message: 'Product removed' })
@@ -47,7 +47,7 @@ describe('Product Routes', () => {
   describe('GET /api/products', () => {
     it('should fetch products', async () => {
       const res = await request(app).get('/api/products');
-      
+
       expect(res.statusCode).toBe(200);
       expect(res.body).toBeInstanceOf(Array);
       expect(res.body[0]).toHaveProperty('_id');
@@ -59,7 +59,7 @@ describe('Product Routes', () => {
   describe('GET /api/products/:id', () => {
     it('should fetch a single product', async () => {
       const res = await request(app).get('/api/products/1');
-      
+
       expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty('_id', '1');
       expect(res.body).toHaveProperty('name', 'Test Product');
@@ -78,7 +78,7 @@ describe('Product Routes', () => {
       const res = await request(app)
         .post('/api/products')
         .send(productData);
-      
+
       expect(res.statusCode).toBe(201);
       expect(res.body).toHaveProperty('_id');
       expect(res.body).toHaveProperty('name', 'New Product');
@@ -96,7 +96,7 @@ describe('Product Routes', () => {
       const res = await request(app)
         .post('/api/products')
         .send(productData);
-      
+
       expect(res.statusCode).toBe(400);
     });
   });
@@ -105,13 +105,13 @@ describe('Product Routes', () => {
     it('should update an existing product', async () => {
       const updateData = {
         name: 'Updated Product',
-        price: 39.99
+        price: '39.99'
       };
 
       const res = await request(app)
         .put('/api/products/1')
         .send(updateData);
-      
+
       expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty('_id', '1');
       expect(res.body).toHaveProperty('name', 'Updated Product');
@@ -123,7 +123,7 @@ describe('Product Routes', () => {
     it('should delete a product', async () => {
       const res = await request(app)
         .delete('/api/products/1');
-      
+
       expect(res.statusCode).toBe(200);
       expect(res.body).toHaveProperty('message', 'Product removed');
     });

@@ -32,6 +32,6 @@ const expenseSchema = mongoose.Schema(
   }
 );
 
-const Expense = mongoose.model('Expense', expenseSchema);
+const Expense = mongoose.models.Expense || mongoose.model('Expense', expenseSchema);
 
 export default Expense;

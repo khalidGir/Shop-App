@@ -1,161 +1,103 @@
-# ShopApp - Enterprise Resource Planning System
+# 🚀 ShopApp - Advanced E-commerce ERP & Management System
 
-ShopApp is a full-featured ERP system designed for small to medium-sized retail businesses and wholesalers. It provides a unified platform to solve data silo problems across multiple departments and improve operational efficiency.
+> **A full-stack business management solution that goes beyond simple e-commerce. It integrates advanced Inventory Intelligence, Financial Analytics, and CRM capabilities into a seamless MERN stack application.**
 
-## Features
+![Dashboard Preview](screenshots/dashboard_preview.png)
+*(Place your main dashboard screenshot here)*
 
-- Real-time inventory monitoring with smart alerts
-- Customer credit limit management with automatic transaction blocking
-- Automatic financial report generation (P&L, cash flow, aging reports)
-- POS interface for quick order creation
-- PDF invoice generation and printing
-- Multi-role access control and user management
-- Expense tracking and supplier management
-- Dashboard analytics and reporting
+## 📖 Overview
 
-## Technology Stack
+ShopApp is designed for businesses that need more than just a storefront. It solves real-world operational challenges by bridging the gap between **Sales**, **Inventory**, and **Finance**. Unlike standard e-commerce templates, this system handles complex business logic like **Credit Sales Management**, **Stock Movement Auditing**, and **Financial Aging Reports**.
 
-### Frontend
-- React.js (v18+) with Vite
-- Redux Toolkit with RTK Query for state management
-- React Bootstrap for UI components
-- React Router for navigation
-- Chart.js for data visualization
+## ✨ Key Features
 
-### Backend
-- Node.js with Express.js
-- MongoDB with Mongoose ODM
-- JWT for authentication
-- Helmet.js for security
-- Winston/Morgan for logging
+### 📦 Inventory Intelligence
+*   **Real-time Stock Tracking**: Automatically logs every stock movement (Sales, Purchases, Adjustments).
+*   **Smart Alerts**: Visual indicators for low stock and reorder points.
+*   **Analytics**: Calculates Inventory Turnover and Stock Value dynamically.
 
-## Prerequisites
+### 💰 Financial Command Center
+*   **Aging Reports**: Tracks overdue invoices (0-30, 31-60, 90+ days) to manage accounts receivable.
+*   **Cash Flow Visualization**: Interactive charts showing daily inflows vs. outflows.
+*   **Profit & Loss**: Automated calculation of Revenue, COGS, and Net Profit.
 
-- Node.js v14 or higher
-- MongoDB instance (local or cloud)
+### 🤝 CRM & Credit Management
+*   **Credit System**: Set individual credit limits for customers.
+*   **Balance Tracking**: Real-time tracking of customer debt and payment history.
+*   **Safety Checks**: Automatically blocks sales if a customer exceeds their credit limit.
 
-## Installation
+### 🧾 Sales & Invoicing
+*   **Professional Invoicing**: Generate, print, and email PDF invoices directly from the browser.
+*   **POS Interface**: Streamlined sales screen for quick order processing.
 
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd shop-app-erp
-   ```
+## 🛠️ Tech Stack
 
-2. Install backend dependencies:
-   ```
-   cd backend
-   npm install
-   ```
+*   **Frontend**: React.js, Redux Toolkit (RTK Query), React Bootstrap, Chart.js
+*   **Backend**: Node.js, Express.js, MongoDB (Mongoose Aggregations)
+*   **Tools**: JWT Authentication, Multer (Image Uploads), React-To-Print
 
-3. Install frontend dependencies:
-   ```
-   cd ../frontend
-   npm install
-   ```
+## 📸 Screenshots
 
-4. Configure environment variables:
-   
-   Create a `.env` file in the `backend` directory:
-   ```
-   NODE_ENV=development
-   PORT=5000
-   MONGO_URI=your_mongodb_connection_string
-   JWT_SECRET=your_jwt_secret_key
-   ```
+| **Inventory Analytics** | **Financial Reports** |
+|:---:|:---:|
+| ![Inventory](screenshots/inventory.png) | ![Finance](screenshots/finance.png) |
+| *Track stock movements and value* | *Visualize cash flow and aging* |
 
-## Running the Application
+| **Customer Credit Profile** | **Sales & POS** |
+|:---:|:---:|
+| ![Customer](screenshots/customer.png) | ![Sales](screenshots/sales.png) |
+| *Manage credit limits and balances* | *Quick checkout with credit checks* |
 
-### Development Mode
+## 🚀 Getting Started
 
-1. Start the backend server:
-   ```
-   cd backend
-   npm run dev
-   ```
+### Prerequisites
+*   Node.js (v14+)
+*   MongoDB (Local or Atlas)
 
-2. Start the frontend development server:
-   ```
-   cd frontend
-   npm run dev
-   ```
+### Installation
 
-### Production Mode
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/yourusername/shop-app-erp.git
+    cd shop-app-erp
+    ```
 
-1. Build the frontend:
-   ```
-   cd frontend
-   npm run build
-   ```
+2.  **Install Dependencies**
+    ```bash
+    # Install backend dependencies
+    cd backend
+    npm install
 
-2. Start the backend server:
-   ```
-   cd backend
-   npm start
-   ```
+    # Install frontend dependencies
+    cd ../frontend
+    npm install
+    ```
 
-## Project Structure
+3.  **Environment Setup**
+    Create a `.env` file in the `backend` folder:
+    ```env
+    NODE_ENV=development
+    PORT=5000
+    MONGO_URI=your_mongodb_connection_string
+    JWT_SECRET=your_jwt_secret
+    ```
 
-```
-shop-app-erp/
-├── backend/
-│   ├── config/          # Configuration files
-│   ├── controllers/     # Request handlers
-│   ├── middleware/      # Custom middleware
-│   ├── models/          # Database models
-│   ├── routes/          # API routes
-│   ├── utils/           # Utility functions
-│   ├── server.js        # Entry point
-│   └── ...
-├── frontend/
-│   ├── src/
-│   │   ├── components/  # Reusable components
-│   │   ├── screens/     # Page components
-│   │   ├── slices/      # Redux slices
-│   │   └── ...
-│   └── ...
-└── ...
-```
+4.  **Run the App**
+    ```bash
+    # Run backend and frontend concurrently (from root if configured, or separately)
+    # Terminal 1 (Backend)
+    cd backend
+    npm run server
 
-## Security Features
+    # Terminal 2 (Frontend)
+    cd frontend
+    npm run dev
+    ```
 
-- Helmet.js for HTTP header protection
-- Express-rate-limit for rate limiting
-- Express-validator for input validation
-- Winston/Morgan for logging
-- JWT-based authentication
-- Environment-based configuration
+## 🔮 Future Improvements
+*   Integration with Stripe/PayPal for online payments.
+*   Multi-warehouse support.
+*   AI-driven demand forecasting.
 
-## Testing
-
-- Jest and Supertest for backend testing
-- React Testing Library for frontend testing (to be implemented)
-
-Run backend tests:
-```
-cd backend
-npm test
-```
-
-## CI/CD
-
-GitHub Actions workflow is configured for:
-- Running tests on multiple Node.js versions
-- Building the frontend application
-- Deploying artifacts
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-MIT
-
-## Contact
-
-For support or queries, please open an issue on the GitHub repository.
+---
+*Built with ❤️ by Khalid Girma

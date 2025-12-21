@@ -8,24 +8,50 @@ import StockMovement from '../models/stockMovementModel.js';
 // @route   POST /api/orders
 // @access  Private
 const addOrderItems = asyncHandler(async (req, res) => {
-  const {
-    orderItems,
-    shippingAddress,
-    paymentMethod,
-    itemsPrice,
-    taxPrice,
-    shippingPrice,
-    totalPrice,
-  } = req.body;
+  const { orderItems, shippingAddress, paymentMethod, discount } = req.body;
 
-  if (orderItems && orderItems.length === 0) {
+  if (!orderItems || orderItems.length === 0) {
     res.status(400);
     throw new Error('No order items');
-    return;
   }
 
+  // Get the product details from the database for each order item
+  const itemsWithPrices = await Promise.all(
+    orderItems.map(async item => {
+      const product = await Product.findById(item._id);
+      if (!product) {
+        res.status(404);
+        throw new Error(`Product not found: ${item._id}`);
+      }
+      return {
+        ...item,
+        price: product.price,
+      };
+    })
+  );
+
+  // Calculate prices
+  const itemsPrice = itemsWithPrices.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
+  
+  // Tax rate (e.g., 15%)
+  const taxRate = 0.15;
+  const taxPrice = itemsPrice * taxRate;
+
+  // Shipping cost
+  const shippingPrice = itemsPrice > 100 ? 0 : 10;
+
+  let totalPrice = itemsPrice + taxPrice + shippingPrice;
+
+  // Apply discount if provided
+  if (discount && discount > 0) {
+    totalPrice -= discount;
+  }
+  
   const order = new Order({
-    orderItems: orderItems.map(item => ({ ...item, product: item._id })),
+    orderItems: itemsWithPrices.map(item => ({ ...item, product: item._id })),
     user: req.user._id,
     shippingAddress,
     paymentMethod,

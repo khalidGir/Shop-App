@@ -39,7 +39,6 @@ const CustomersScreen = () => {
         city: '',
         postalCode: '',
         country: 'Ethiopia',
-        country: 'Ethiopia',
         notes: '',
         creditLimit: 0,
         currentBalance: 0,
