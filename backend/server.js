@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 import connectDB from './config/db.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
@@ -60,6 +61,8 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const app = express();
+
+app.use(cors());
 
 // Add request ID for tracking
 app.use(requestIdMiddleware);
