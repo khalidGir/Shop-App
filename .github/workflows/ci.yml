@@ -38,8 +38,8 @@ jobs:
         npm test
       env:
         NODE_ENV: test
-        MONGO_URI: ${{ secrets.MONGO_URI }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        MONGO_URI: ${{ secrets.MONGO_URI || 'mongodb://localhost:27017/shopapp_test' }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET || 'test_secret_key' }}
   
   test-frontend:
     runs-on: ubuntu-latest
