@@ -114,9 +114,13 @@ jobs:
         name: frontend-build
         path: dist
     
+    - name: Debug build output
+      run: ls -R dist
+
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
       with:
+        token: ${{ secrets.GITHUB_TOKEN }}
         folder: dist
         branch: gh-pages
         clean: true
